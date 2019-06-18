@@ -7,6 +7,7 @@ class Dot {
   boolean dead = false;
   boolean reachedGoal = false;
   boolean isBest = false;
+  boolean reachedCheckpoint = false;
 
   float fitness = 0;
 
@@ -53,9 +54,11 @@ class Dot {
         dead = true;
       } else if (dist(pos.x, pos.y, goal.x, goal.y) < 5) {
         reachedGoal = true;
-      } else if ((pos.x< 200 && pos.y < 260 && pos.x > 0 && pos.y > 250) || (pos.x< 550 && pos.y < 260 && pos.x > 250 && pos.y > 250) || (pos.x< 800 && pos.y < 260 && pos.x > 600 && pos.y > 250)) {
+      } else if (dist(pos.x, pos.y, checkpoint.x, checkpoint.y) < 50) {
+        reachedCheckpoint = true;
+      } else if ((pos.x< 510 && pos.y < 800 && pos.x > 500 && pos.y > 650) || (pos.x< 260 && pos.y < 600 && pos.x > 250 && pos.y > 200) || (pos.x< 610 && pos.y < 400 && pos.x > 600 && pos.y > 0)) {
         dead = true;
-      } else if ((pos.x< 375 && pos.y < 560 && pos.x > 0 && pos.y > 550) || (pos.x< 800 && pos.y < 560 && pos.x > 425 && pos.y > 550)) {
+      } else if ((pos.x< 700 && pos.y < 610 && pos.x > 0 && pos.y > 600) || (pos.x< 450 && pos.y < 210 && pos.x > 50 && pos.y > 200)) {
         dead = true;
       }
     }
@@ -69,6 +72,9 @@ class Dot {
     } else {
       float distanceToGoal = dist(pos.x, pos.y, goal.x, goal.y);
       fitness = 1.0/(distanceToGoal * distanceToGoal);
+    }
+    if (reachedCheckpoint) {
+      fitness = fitness * 2;
     }
   }
 

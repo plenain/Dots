@@ -1,5 +1,6 @@
 Population test;
-PVector goal  = new PVector(40, 10);
+PVector goal  = new PVector(250, 10);
+PVector checkpoint = new PVector(500, 500);
 
 
 void setup() {
@@ -17,8 +18,11 @@ void draw() {
   noStroke();
   ellipse(goal.x, goal.y, 10, 10);
   
-  fill(255, 255, 255);
-  rect(700, 50, 10, 700);
+  fill(0, 0, 255);
+  ellipse(checkpoint.x, checkpoint.y, 55, 55);
+  
+  //fill(255, 255, 255);
+  //rect(700, 50, 10, 700);
   
   fill(255, 255, 255);
   rect(0, 600, 700, 10);
